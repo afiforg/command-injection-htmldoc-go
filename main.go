@@ -20,6 +20,11 @@ func run(args []string) int {
 		return 1
 	}
 
+	if err := validateRequiredBinaries([]string{"htmldoc"}); err != nil {
+		fmt.Fprintln(os.Stderr, err.Error())
+		return 2
+	}
+
 	if err := generatePDF(url); err != nil {
 		fmt.Fprintln(os.Stderr, err.Error())
 		return 1
